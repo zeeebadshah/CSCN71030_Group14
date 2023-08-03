@@ -231,3 +231,14 @@ void searchAccount() {
         printf("No accounts found with account holder name '%s'\n", accountHolderName);
     }
 }
+void saveData() {
+    FILE* fp;
+    fp = fopen("accounts.dat", "wb");
+    if (fp == NULL) {
+        printf("\nError opening file for writing.\n");
+        return;
+    }
+    fwrite(accounts, sizeof(accounts), numAccounts, fp);
+    fclose(fp);
+    printf("\nData saved successfully!\n");
+}
