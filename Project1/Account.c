@@ -242,3 +242,14 @@ void saveData() {
     fclose(fp);
     printf("\nData saved successfully!\n");
 }
+void loadData() {
+    FILE* fp;
+    fp = fopen("accounts.dat", "rb");
+    if (fp == NULL) {
+        printf("\nNo existing data found.\n");
+        return;
+    }
+    fread(accounts, sizeof(accounts), MAX_ACCOUNTS, fp);
+    fclose(fp);
+    printf("\nData loaded successfully!\n");
+}
