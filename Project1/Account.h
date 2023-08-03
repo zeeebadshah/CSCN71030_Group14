@@ -16,3 +16,7 @@ struct BankAccount account;
 void addNewAccount();
 void deleteAccount();
 void updateAccount();
+void transferMoney();
+void searchAccount();
+void saveData();
+void loadData();
