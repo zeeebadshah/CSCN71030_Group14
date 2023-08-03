@@ -206,6 +206,68 @@ void transferMoney() {
         }
     }
 }
+void displaySingleAccount() {
+    int accountNumber;
+    int accountIndex = -1;
+    printf("\nEnter account number to display: ");
+    if (scanf("%d", &accountNumber) != 1) {
+        printf("Invalid account number entered");
+        return;
+    }
+
+    // Find the index of the account to be displayed
+    for (int i = 0; i < numAccounts; i++) {
+        if (accounts[i].accountNumber == accountNumber) {
+            accountIndex = i;
+            break;
+        }
+    }
+
+    // Display the account details
+    if (accountIndex == -1) {
+        printf("\nAccount not found!\n");
+    }
+    else {
+        printf("\nAccount Details:\n");
+        printf("Account Number: %d\n", accounts[accountIndex].accountNumber);
+        printf("Account Holder Name: %s\n", accounts[accountIndex].accountHolderName);
+        printf("Account Balance: %f\n", accounts[accountIndex].accountBalance);
+    }
+}
+
+void displayRangeAccounts() {
+    int startAccountNumber, endAccountNumber;
+    printf("\nEnter start account number: ");
+    if (scanf("%d", &startAccountNumber) != 1) {
+        printf("Invalid account number entered\n");
+        return;
+    }
+    printf("Enter end account number: ");
+    if (scanf("%d", &endAccountNumber) != 1) {
+        printf("invalid account number entered\n");
+        return;
+    }
+
+    // Display the accounts within the specified range
+    printf("\nAccounts within range %d to %d:\n", startAccountNumber, endAccountNumber);
+    for (int i = 0; i < numAccounts; i++) {
+        if (accounts[i].accountNumber >= startAccountNumber && accounts[i].accountNumber <= endAccountNumber) {
+            printf("Account Number: %d\n", accounts[i].accountNumber);
+            printf("Account Holder Name: %s\n", accounts[i].accountHolderName);
+            printf("Account Balance: %f\n\n", accounts[i].accountBalance);
+        }
+    }
+}
+
+void displayAllAccounts() {
+    // Display all the accounts in the system
+    printf("\nAll Accounts:\n");
+    for (int i = 0; i < numAccounts; i++) {
+        printf("Account Number: %d\n", accounts[i].accountNumber);
+        printf("Account Holder Name: %s\n", accounts[i].accountHolderName);
+        printf("Account Balance: %f\n\n", accounts[i].accountBalance);
+    }
+}
 void searchAccount() {
     char accountHolderName[MAX_CHAR];
     int accountFound = 0;
