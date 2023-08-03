@@ -206,3 +206,28 @@ void transferMoney() {
         }
     }
 }
+void searchAccount() {
+    char accountHolderName[MAX_CHAR];
+    int accountFound = 0;
+    printf("\nEnter account holder name to search: ");
+    if (scanf("%99s", accountHolderName) != 1) {
+        printf("Error reading input!\n");
+        return;
+    }
+    accountHolderName[strlen(accountHolderName)] = '\0';
+
+    // Display the accounts with matching account holder name
+    printf("\nAccounts with account holder name '%s':\n", accountHolderName);
+    for (int i = 0; i < numAccounts; i++) {
+        if (strcmp(accounts[i].accountHolderName, accountHolderName) == 0) {
+            printf("Account Number: %d\n", accounts[i].accountNumber);
+            printf("Account Holder Name: %s\n", accounts[i].accountHolderName);
+            printf("Account Balance: %f\n\n", accounts[i].accountBalance);
+            accountFound = 1;
+        }
+    }
+
+    if (!accountFound) {
+        printf("No accounts found with account holder name '%s'\n", accountHolderName);
+    }
+}
