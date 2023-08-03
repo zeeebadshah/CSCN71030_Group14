@@ -158,3 +158,51 @@ void updateAccount() {
         }
     }
 }
+void transferMoney() {
+    int sourceAccountNumber, destAccountNumber, sourceAccountIndex = -1, destAccountIndex = -1;
+    float amount;
+    printf("\nEnter source account number: ");
+    if (scanf("%d", &sourceAccountNumber) != 1) {
+        printf("Invalid source account number\n");
+        return;
+    }
+    printf("Enter destination account number: ");
+    if (scanf("%d", &destAccountNumber) != 1) {
+        printf("Invalid destination account number\n");
+        return;
+    }
+    printf("Enter amount to transfer: ");
+    if (scanf("%f", &amount) != 1) {
+        printf("Invalid amount entered");
+        return;
+    }
+
+    // Find the indexes of the source and destination accounts
+    for (int i = 0; i < numAccounts; i++) {
+        if (accounts[i].accountNumber == sourceAccountNumber) {
+            sourceAccountIndex = i;
+        }
+        if (accounts[i].accountNumber == destAccountNumber) {
+            destAccountIndex = i;
+        }
+    }
+
+    // Check if source and destination accounts exist
+    if (sourceAccountIndex == -1) {
+        printf("\nSource account not found!\n");
+    }
+    else if (destAccountIndex == -1) {
+        printf("\nDestination account not found!\n");
+    }
+    else {
+        // Check if the source account has sufficient balance
+        if (accounts[sourceAccountIndex].accountBalance >= amount) {
+            accounts[sourceAccountIndex].accountBalance -= amount;
+            accounts[destAccountIndex].accountBalance += amount;
+            printf("\nAmount transferred successfully!\n");
+        }
+        else {
+            printf("\nInsufficient balance!\n");
+        }
+    }
+}
